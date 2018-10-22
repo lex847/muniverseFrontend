@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import UiCard from './components/card/UiCard';
 class App extends Component {
   render() {
+    const avatar = "https://images.mapsofindia.com/who_is_who_new/2018/02/02051959/who-is-who-sports-sachin-tendulkar.jpg";
+    const image="https://www.extremetech.com/wp-content/uploads/2016/05/AppleMusicFeature.jpg";
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <UiCard
+          nickname="Parth"
+          avatar={avatar}
+          time="50min"
+          username="gamparth"
+          caption="Sachin, is my hero"
+          image={image} />
+        <UiCard
+          nickname="Parth"
+          avatar={avatar}
+          time="50min"
+          username="gamparth"
+          caption="Sachin, is my hero"
+          image={image} />
       </div>
     );
   }
