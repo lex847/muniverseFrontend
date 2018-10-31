@@ -1,0 +1,34 @@
+.profileCard {
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    margin-right: 20px;
+    height: 300px;
+    display: inline-block;
+}
+.profileCard-user {
+  display: flex;
+  margin: 1% 0% 2% 2%;
+  align-items: center;
+}
+
+.profileCard-user-avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.profileCard-user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.profileCard-user-nickname {
+  margin-left: 8px;
+}
+
+.time {
+  margin-left: 10px;
+  font-size: 8px;
+  color: rgb(84, 84, 84);
+}

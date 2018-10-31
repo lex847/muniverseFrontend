@@ -2,10 +2,8 @@
     border-radius: 3px;
     border: 1px solid #e6e6e6;
     background-color: #fff;
-    margin-top: 3%;
     margin-bottom: 20px;
-    margin-left : 20%;
-    margin-right: 30%;
+    display: inline-block;
 }
 
 .Post-user {
@@ -26,8 +24,7 @@
 }
 
 .Post-user-nickname {
-  margin-left: 12px;
-  font-family: 'PT Sans', sans-serif;
+  margin-left: 8px;
 }
 
 .time {
@@ -45,7 +42,6 @@
 .Post-image img {
   display: block;
   width: 100%;
-  height: 100px;
   border-radius: 10px;
 }
 
@@ -55,13 +51,17 @@
 
 .Post-caption strong {
     font-family: 'PT Sans', sans-serif;
-    font-weight: bold;
 }
 
+.liked-button,
 .like-button {
   margin: 1% 2% 1% 10% ;
   border: none;
   background: none;
+}
+
+.liked-button {
+  color: red;
 }
 
 .comment-button {
