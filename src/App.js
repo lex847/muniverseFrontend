@@ -4,28 +4,47 @@ import NavBar from './components/navBar/navBar';
 // import ProfileCard from './components/profileCard/profileCard';
 import "./App.css";
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+      fetched: false
+    }
+  }
+  componentDidMount() {
+    console.log("hello;")
+    fetch('http://localhost:3003/api/v1/user/feed')
+      .then((res) => res.json().then((response) => {
+        this.setState({
+          data: response.data,
+          fetched: true
+        })
+      }));
+  }
   render() {
-    const avatar = "https://avatars1.githubusercontent.com/u/14358616?s=400&u=9f6ee034ad601bd6b83f4a60547888de02795418&v=4"
-    const image = "https://www.extremetech.com/wp-content/uploads/2016/05/AppleMusicFeature.jpg";
-    return (
-      <div>
-        <NavBar></NavBar>
-        <div className="App" ref="Main">
-          <UiCard
-            nickname="Vishi choudhary"
-            avatar={avatar}
-            time="50min"
-            caption="Sachin, is my hero"
-            image={image} />
-          <UiCard
-            nickname="Vishi choudhary"
-            avatar={avatar}
-            time="50min"
-            caption="Sachin, is my hero"
-            image={image} />
+    if (this.state.fetched) {
+      console.log("mai call hua");
+      return (
+        <div>
+          <NavBar></NavBar>
+          <div className="App" ref="Main">
+            <UiCard
+              nickname={this.state.data[0].nickname}
+              avatar={this.state.data[0].avatar}
+              time={this.state.data[0].time}
+              caption={this.state.data[0].caption}
+              image={this.state.data[0].image} />
+          </div>
+        </div >
+      );
+    }
+    else {
+      return (
+        <div>
+          Your interet isn't working I Guess
         </div>
-      </div >
-    );
+      );
+    }
   }
 }
 
