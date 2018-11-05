@@ -4,7 +4,6 @@ class Post extends Component {
     render(){
         return (
             <div>
-                Kush to hoga jahan pe;
             </div>
         )
     }
