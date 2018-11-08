@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UiCard from '../../Components/Post/Post';
+import Post from '../../Components/Post/Post';
 
 class Home extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Home extends Component {
         if (this.state.fetched) {
             return (
                 <div className="col-md-6 offset-3">
-                    <UiCard
+                    <Post
                         nickname={this.state.data[0].nickname}
                         avatar={this.state.data[0].avatar}
                         time={this.state.data[0].time}

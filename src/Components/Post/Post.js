@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import "./Post.css";
 
