@@ -9,7 +9,7 @@ class User extends Component {
         }
     }
     componentDidMount() {
-        const url = 'http://localhost:3003/api/v1/user/user?userName='+this.props.match.params.user;
+        const url = 'http://14.139.56.18:3003/api/v1/user/user?userName='+this.props.match.params.user;
         fetch(url)
             .then((res) => res.json().then((response) => {
                 this.setState({
