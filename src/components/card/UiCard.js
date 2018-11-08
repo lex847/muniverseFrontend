@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Router, Redirect, Link } from 'react-router-dom';
 
 import "./Uicard.css";
 
@@ -14,6 +15,11 @@ class UiCard extends Component {
             buttonLiked: !this.state.buttonLiked
         })
     }
+
+    tempFunction(data) {
+        console.log(data);
+        // <Link to="/vishichoudhary/fhefhefefeh" />
+    }
     render() {
         const nickname = this.props.nickname;
         const avatar = this.props.avatar;
@@ -23,7 +29,7 @@ class UiCard extends Component {
         let likeBtnCls = this.state.buttonLiked ? "like-button" : "liked-button";
 
         return (
-            <div className="col-6 offset-3 Post" ref="Post">
+            <div className="Post" ref="Post">
                 <header>
                     <div className="Post-user">
                         <div className="Post-user-avatar">
@@ -38,18 +44,21 @@ class UiCard extends Component {
                         {caption}
                     </div>
                 </header>
-
-                <div className="Post-image">
-                    <div className="Post-image-bg">
-                        <img alt={caption} src={image} />
+                <div onClick={this.tempFunction.bind(this)}>
+                    <div className="Post-image">
+                        <div className="Post-image-bg">
+                            <img alt={caption} src={image} />
+                        </div>
                     </div>
                 </div>
                 <button className={likeBtnCls} onClick={this.changeColor.bind(this)}>
                     <i className="fa fa-heart" ></i> Like
                 </button>
-                <button className="comment-button">
-                    <i className="fa fa-comment"></i> Comment
+                <Link to="vishichoudhary/whocare/comments/fhe">
+                    <button className="comment-button">
+                        <i className="fa fa-comment"></i> Comment
                 </button>
+                </Link>
             </div>
         );
     }

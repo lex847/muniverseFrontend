@@ -10,7 +10,6 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        console.log("hello;")
         fetch('http://localhost:3003/api/v1/user/feed')
             .then((res) => res.json().then((response) => {
                 this.setState({
@@ -22,7 +21,7 @@ class Home extends Component {
     render() {
         if (this.state.fetched) {
             return (
-                <div>
+                <div className="col-md-6 offset-3">
                     <UiCard
                         nickname={this.state.data[0].nickname}
                         avatar={this.state.data[0].avatar}
