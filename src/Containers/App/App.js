@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import NavBar from './components/navBar/navBar';
-import Home from './containers/home/home';
-import Post from './containers/post/post';
-import User from './containers/user/user';
-import Error404 from './containers/error/error404';
+import NavBar from '../../Components/NavBar/NavBar';
+import Home from '../Home/Home';
+import Post from '../Post/Post';
+import User from '../User/User';
+import Error404 from '../Error/Error404';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import "./App.css";
 

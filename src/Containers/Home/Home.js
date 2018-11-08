@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UiCard from '../../components/card/UiCard';
+import UiCard from '../../Components/Post/Post';
 
 class Home extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router, Redirect, Link } from 'react-router-dom';
 
-import "./Uicard.css";
+import "./Post.css";
 
 class UiCard extends Component {
     constructor(props) {
