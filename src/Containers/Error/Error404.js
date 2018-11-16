@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import ErrorComp404 from '../../Components/Error/Error404';
 
 class Error404 extends Component {
     render() {
         return (
-            <div>
-                404 page, don't know what you are looking for;
-            </div>
+		<ErrorComp404/>
         )
     }
 }
