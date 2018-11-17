@@ -22,9 +22,9 @@ class App extends Component {
               <Route exact path="/welcome" component={Welcome}/>
               <Route exact path="/login" component={Login}/>
               <Route exact path="/signup" component={Signup}/>
+              <Route exact path="/error" component={Error404} />
               <Route exact path="/:user" component={User} />
               <Route exact path="/:user/:post" component={Post} />
-              <Route component={Error404} />
             </Switch>
           </div>
         </Router>
