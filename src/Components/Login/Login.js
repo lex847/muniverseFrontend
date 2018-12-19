@@ -1,20 +1,31 @@
 import React from 'react';
 import "./Login.css";
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
 function Login(props) {
     return (
-        <Form>
-            <Form.Field>
-                <label>Username</label>
-                <input placeholder='First Name' />
-            </Form.Field>
-            <Form.Field>
-                <label>Password</label>
-                <input placeholder='Last Name' />
-            </Form.Field>
-            <Button type='submit'>Submit</Button>
-        </Form>
+        <div className="Login">
+            <Input
+                defaultValue="email"
+                id="username"
+                inputProps={{
+                    'aria-label': 'Description',
+                }}
+                onChange={props.usernameChange}
+            />
+            <Input
+                defaultValue="password"
+                id="password"
+                inputProps={{
+                    'aria-label': 'Description',
+                }}
+                onChange={props.passwordChange}
+            />
+            <Button onClick={props.handleSubmit}>
+                Login
+            </Button>
+        </div>
     )
 }
 

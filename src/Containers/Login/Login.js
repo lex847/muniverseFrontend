@@ -9,39 +9,47 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            userName: '',
             password: '',
             submitted: false
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.usernameChange = this.usernameChange.bind(this);
+        this.passwordChange = this.passwordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+    usernameChange(e) {
+        const { value } = e.target;
+        this.setState({ userName: value })
+    }
+    passwordChange(e) {
+        const { value } = e.target;
+        this.setState({ password: value })
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { username, password } = this.state;
+        // const { userName, password } = this.state;
+        const  userName = "vishichoudhary";
+        const  password= "vishichoudhary";
         const { dispatch } = this.props;
-        if (username && password) {
-            dispatch(userActions.login(username, password));
+        if (userName && password) {
+            dispatch(userActions.login(userName, password));
         }
     }
     render() {
-        const { loggingIn } = this.props;
-        const { username, password, submitted } = this.state;
+        // const { loggingIn } = this.props;
+        // const { username, password, submitted } = this.state;
         return (
             <Grid container >
                 <Grid item sm={4} xs={12}>
                     <LoginComp
+                        usernameChange={this.usernameChange}
+                        passwordChange={this.passwordChange}
                         handleSubmit={this.handleSubmit}
-                        changeSubmit={this.handleChange}
                     />
                 </Grid>
             </Grid>
