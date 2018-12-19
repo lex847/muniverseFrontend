@@ -1,5 +1,6 @@
-import config from 'config';
+// import config from 'config';
 import { authHeader } from '../Helpers';
+const config  = "hello";
 
 export const userService = {
     login,
@@ -18,7 +19,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`localhost:3003/api/v1/auth/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -91,7 +92,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                // location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
