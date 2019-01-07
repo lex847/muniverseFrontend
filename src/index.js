@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import 'font-awesome/css/font-awesome.min.css';
-import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './Containers/App/App';

@@ -2,6 +2,11 @@
     margin-top: 20px;
 }
 
-.Login-signup {
-    margin-top: 15px;
+.Input {
+    height: 140;
+    width: 100;
+}
+
+.Button {
+    background-color: blue
 }

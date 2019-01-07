@@ -32,9 +32,8 @@ class Login extends Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        // const { userName, password } = this.state;
-        const  userName = "vishichoudhary";
-        const  password= "vishichoudhary";
+        const { userName, password } = this.state;
+        console.log(this.state);
         const { dispatch } = this.props;
         if (userName && password) {
             dispatch(userActions.login(userName, password));
