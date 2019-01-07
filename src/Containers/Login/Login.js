@@ -11,7 +11,8 @@ class Login extends Component {
         this.state = {
             userName: '',
             password: '',
-            submitted: false
+            submitted: false,
+            error: false
         };
 
         this.usernameChange = this.usernameChange.bind(this);
@@ -33,15 +34,12 @@ class Login extends Component {
 
         this.setState({ submitted: true });
         const { userName, password } = this.state;
-        console.log(this.state);
         const { dispatch } = this.props;
         if (userName && password) {
             dispatch(userActions.login(userName, password));
         }
     }
     render() {
-        // const { loggingIn } = this.props;
-        // const { username, password, submitted } = this.state;
         return (
             <Grid container >
                 <Grid item sm={4} xs={12}>
@@ -49,6 +47,7 @@ class Login extends Component {
                         usernameChange={this.usernameChange}
                         passwordChange={this.passwordChange}
                         handleSubmit={this.handleSubmit}
+                        error={this.state.error}
                     />
                 </Grid>
             </Grid>

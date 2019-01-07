@@ -14,17 +14,6 @@ export const userService = {
 };
 
 function login(userName, password) {
-    console.log(userName, password);
-    // return axios({
-    //     method: 'post',
-    //     url: 'localhost:3003/api/v1/auth/login',
-    //     data: {
-    //         userName: userName,
-    //         password: password
-    //     }
-    //   }).then(function(response){
-    //       console.log(response);
-    //   });
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -36,17 +25,10 @@ function login(userName, password) {
 
     return fetch('http://localhost:3003/api/v1/auth/login', requestOptions)
         .then(handleResponse)
-        // .then(function (resp) {
-        //     console.log(resp);
-        // })
         .then(user => {
-            console.log(user);
-            // login successful if there's a jwt token in the response
             if (user.data.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user.data));
             }
-
             return user;
         });
 }
@@ -105,11 +87,9 @@ function login(userName, password) {
 // }
 
 function handleResponse(response) {
-    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        console.log(data);
-        if (!response.ok) {
+        if (!response.ok || data.statusCode === 400) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }

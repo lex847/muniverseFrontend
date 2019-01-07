@@ -12,7 +12,7 @@ const styles = {
         width: '800px',
         padding: '5px',
         marginLeft: '280px',
-        height: '450px',
+        height: '480px',
     },
     header: {
         position: 'relative',
@@ -28,6 +28,11 @@ const styles = {
         color: '#0b8221',
         overflow: 'hidden',
     },
+    error: {
+        color: 'red',
+        marginTop: '20px',
+        marginLeft: '300px',
+    },
     text: {
         fontSize: '35px',
         marginLeft: '160px',
@@ -35,7 +40,7 @@ const styles = {
     textField: {
         marginTop: '20px',
         marginLeft: '80px',
-        width: '350px',
+        width: '620px',
     },
     button: {
         marginTop: '20px',
@@ -65,6 +70,7 @@ function Login(props) {
                 Muniverse
             </div>
             <div className={classes.text}>Login to get some good music</div>
+            {(props.error ? <div className={classes.error}>Credentials are wrong</div> : <div></div>)}
             <div>
                 <TextField
                     id="username"
@@ -73,7 +79,7 @@ function Login(props) {
                     onChange={props.usernameChange}
                     margin="normal"
                     variant="outlined"
-                    inputProps={{color: '#0b8221'}}
+                    inputProps={{ color: '#0b8221' }}
                 />
             </div>
             <div>
