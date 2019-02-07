@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom'
+import './Login.css';
 
 const styles = {
     paper: {
@@ -32,6 +33,7 @@ const styles = {
         color: 'red',
         marginTop: '20px',
         marginLeft: '300px',
+        textDecoration: 'blink'
     },
     text: {
         fontSize: '35px',
@@ -70,7 +72,7 @@ function Login(props) {
                 Muniverse
             </div>
             <div className={classes.text}>Login to get some good music</div>
-            {(props.error ? <div className={classes.error}>Credentials are wrong</div> : <div></div>)}
+            {(props.error ? <div className="blink_me">Credentials are wrong</div> : <div></div>)}
             <div>
                 <TextField
                     id="username"

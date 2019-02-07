@@ -1,12 +1,13 @@
-.Login {
+.blink_me {
+    color: red;
     margin-top: 20px;
+    margin-left: 300px;
+    animation: blinker 1s linear;
+    animation-iteration-count: 3;
 }
 
-.Input {
-    height: 140;
-    width: 100;
-}
-
-.Button {
-    background-color: blue
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
 }
