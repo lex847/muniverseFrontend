@@ -9,10 +9,8 @@ import './Login.css';
 
 const styles = {
     paper: {
-        marginTop: '15px',
         width: '800px',
         padding: '5px',
-        marginLeft: '280px',
         height: '480px',
     },
     header: {

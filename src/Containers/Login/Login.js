@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import LoginComp from '../../Components/Login/Login';
 import { userActions } from '../../Actions';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from 'react-router-dom'
-
+import './Login.css'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -52,16 +51,15 @@ class Login extends Component {
             this.setState({error:true})
         }
         return (
-            <Grid container >
-                <Grid item sm={4} xs={12}>
+            <div className="loginContainer" >
+                
                     <LoginComp
                         usernameChange={this.usernameChange}
                         passwordChange={this.passwordChange}
                         handleSubmit={this.handleSubmit}
                         error={this.state.error}
                     />
-                </Grid>
-            </Grid>
+            </div>
         )
     }
 }
