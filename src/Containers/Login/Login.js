@@ -13,12 +13,14 @@ class Login extends Component {
             userName: '',
             password: '',
             submitted: false,
-            error: false
+            error: false,
+            showPassword: false
         };
 
         this.usernameChange = this.usernameChange.bind(this);
         this.passwordChange = this.passwordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleClickShowPassword.bind(this);
     }
 
     usernameChange(e) {
@@ -29,6 +31,10 @@ class Login extends Component {
         const { value } = e.target;
         this.setState({ password: value })
     }
+    handleClickShowPassword = () => {
+        
+        this.setState(state => ({ showPassword: !state.showPassword }));
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -45,20 +51,22 @@ class Login extends Component {
             return <CircularProgress disableShrink />;
         }
         if (this.props.loggedIn) {
-            return <Redirect to ='/'/>
+            return <Redirect to='/' />
         }
-        if(this.props.type === 'alert-danger' && !this.state.error){
-            this.setState({error:true})
+        if (this.props.type === 'alert-danger' && !this.state.error) {
+            this.setState({ error: true })
         }
         return (
             <div className="loginContainer" >
-                
-                    <LoginComp
-                        usernameChange={this.usernameChange}
-                        passwordChange={this.passwordChange}
-                        handleSubmit={this.handleSubmit}
-                        error={this.state.error}
-                    />
+
+                <LoginComp
+                    usernameChange={this.usernameChange}
+                    passwordChange={this.passwordChange}
+                    handleSubmit={this.handleSubmit}
+                    showPassword={this.state.showPassword}
+                    handleClickShowPassword={this.handleClickShowPassword}
+                    error={this.state.error}
+                />
             </div>
         )
     }

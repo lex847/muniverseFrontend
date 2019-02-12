@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom'
 import './Login.css';
+import Icon from '@material-ui/core/Icon'
+import { InputAdornment, IconButton } from '@material-ui/core';
 
 const styles = {
     paper: {
@@ -61,7 +63,8 @@ const styles = {
     }
 }
 
-function Login(props) {
+function Login (props){
+
     const { classes } = props;
     return (
         <Paper elevation={1} className={classes.paper}>
@@ -79,19 +82,30 @@ function Login(props) {
                     onChange={props.usernameChange}
                     margin="normal"
                     variant="outlined"
-                    inputProps={{ color: '#0b8221' }}
+                    props={{ color: '#0b8221' }}
                 />
             </div>
             <div>
                 <TextField
                     id="password"
-                    label="Password"
                     className={classes.textField}
-                    type="password"
+                    variant="outlined"
+                    type={props.showPassword ? 'text' : 'password'}
+                    label="Password"
                     autoComplete="current-password"
                     onChange={props.passwordChange}
-                    margin="normal"
-                    variant="outlined"
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="Toggle password visibility"
+                                    onClick={props.handleClickShowPassword}
+                                >
+                                    {props.showPassword ? <Icon>visibility</Icon> : <Icon>visibility_off</Icon>}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
             </div>
             <div>
