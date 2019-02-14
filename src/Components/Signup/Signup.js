@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom'
 import './Signup.css';
+import { InputAdornment, IconButton, Icon } from '@material-ui/core';
 
 const styles = {
     paper: {
         marginTop: '15px',
         width: '800px',
         padding: '5px',
-        marginLeft: '280px',
         height: '700px',
     },
     header: {
@@ -57,6 +57,8 @@ const styles = {
 }
 
 function Signup(props) {
+    console.log(props.matched);
+    
     const { classes } = props;
     return (
         <Paper elevation={1} className={classes.paper}>
@@ -70,7 +72,8 @@ function Signup(props) {
                     id="username"
                     label="Username"
                     className={classes.textField}
-                    onChange={props.usernameChange}
+                    onChange={props.inputChangeHandler}
+                    name="userName"
                     margin="normal"
                     variant="outlined"
                     inputProps={{ color: '#0b8221' }}
@@ -81,7 +84,8 @@ function Signup(props) {
                     id="fullName"
                     label="Full Name"
                     className={classes.textField}
-                    onChange={props.usernameChange}
+                    onChange={props.inputChangeHandler}
+                    name="fullName"
                     margin="normal"
                     variant="outlined"
                     inputProps={{ color: '#0b8221' }}
@@ -92,7 +96,8 @@ function Signup(props) {
                     id="email"
                     label="Email Address"
                     className={classes.textField}
-                    onChange={props.usernameChange}
+                    onChange={props.inputChangeHandler}
+                    name="email"
                     margin="normal"
                     type="email"
                     variant="outlined"
@@ -102,12 +107,25 @@ function Signup(props) {
             <div>
                 <TextField
                     id="password"
+                    name="password"
                     label="Password"
                     className={classes.textField}
-                    type="password"
-                    onChange={props.passwordChange}
+                    type={props.showPassword ? 'text' : 'password'}
+                    onChange={props.inputChangeHandler}
                     margin="normal"
                     variant="outlined"
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="Toggle password visibility"
+                                    onClick={props.handleClickShowPassword}
+                                >
+                                    {props.showPassword ? <Icon>visibility</Icon> : <Icon>visibility_off</Icon>}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
             </div>
             <div>
@@ -115,10 +133,23 @@ function Signup(props) {
                     id="passwordConfirm"
                     label="Confirm Password"
                     className={classes.textField}
+                    name="confirmPassword"
                     type="password"
-                    onChange={props.passwordChange}
+                    onChange={props.inputChangeHandler}
                     margin="normal"
                     variant="outlined"
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="Confirm"
+                                >
+                                    {props.matched===true ? <Icon style={{color:"green"}}>check_circle_outline</Icon>:null}
+                                     {props.matched===false?<Icon style={{color:"red"}}>clear</Icon>:null}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
             </div>
             <div>

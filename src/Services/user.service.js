@@ -1,8 +1,8 @@
-// import config from 'config';
+import config from '../Helpers/config';
 //import { authHeader } from '../Helpers';
 //const config  = "hello";
-// import axios from 'axios';
 
+// import axios from 'axios';
 export const userService = {
     login,
     // logout,
@@ -23,7 +23,7 @@ function login(userName, password) {
         body: JSON.stringify({ userName, password })
     };
 
-    return fetch('http://localhost:3003/api/v1/auth/login', requestOptions)
+    return fetch(config.serverUrl+'/api/v1/auth/login', requestOptions)
         .then(handleResponse)
         .then(user => {
             if (user.data.token) {
@@ -56,21 +56,21 @@ function login(userName, password) {
 //     return fetch('${config.apiUrl}/users/${id}', requestOptions).then(handleResponse);
 // }
 
-// function register(user) {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
-//     };
+function register(user) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
 
-//     return fetch('${config.apiUrl}/users/register', requestOptions).then(handleResponse);
-// }
+    return fetch('${config.serverUrl}/api/auth/signup', requestOptions).then(handleResponse);
+}
 
 // function update(user) {
 //     const requestOptions = {
 //         method: 'PUT',
 //         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
+//         bodry: JSON.stringify(user)
 //     };
 
 //     return fetch('${config.apiUrl}/users/${user.id}', requestOptions).then(handleResponse);;

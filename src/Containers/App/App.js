@@ -14,9 +14,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar></NavBar>
         <Router>
           <div className="App">
+            <NavBar></NavBar>
             <Switch>
               <Route exact path="/" render={() => (
                 localStorage.getItem('user') ? <Home /> : <Redirect to="/welcome" />
