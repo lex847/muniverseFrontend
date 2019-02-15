@@ -10,7 +10,7 @@ const Loader = (props) => {
                 <div></div>
                 <div></div>
             </div>
-            Something fishy going on.
+            {props.children}
         </div>
     )
 }

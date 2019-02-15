@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import LoginComp from '../../Components/Login/Login';
 import { userActions } from '../../Actions';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from 'react-router-dom'
 import './Login.css'
+import Loader from '../../Components/Loader/Loader'
+import { Snackbar, SnackbarContent, Icon, IconButton } from '@material-ui/core';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +33,7 @@ class Login extends Component {
         this.setState({ password: value })
     }
     handleClickShowPassword = () => {
-        
+
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
@@ -47,18 +48,13 @@ class Login extends Component {
         }
     }
     render() {
-        if (this.props.loggingIn) {
-            return <CircularProgress disableShrink />;
-        }
-        if (this.props.loggedIn) {
+        if (this.props.user) {
             return <Redirect to='/' />
         }
-        if (this.props.type === 'alert-danger' && !this.state.error) {
-            this.setState({ error: true })
-        }
+
         return (
             <div className="loginContainer" >
-
+                {this.props.loading ? <Loader>We are signing you in..Ma chudao</Loader> : null}
                 <LoginComp
                     usernameChange={this.usernameChange}
                     passwordChange={this.passwordChange}
@@ -67,17 +63,46 @@ class Login extends Component {
                     handleClickShowPassword={this.handleClickShowPassword}
                     error={this.state.error}
                 />
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    open={this.props.msg}
+                    autoHideDuration={3000}
+                >
+                    <SnackbarContent
+                        id="snackbar-warning"
+                        aria-describedby="client-snackbar"
+                        message={
+                            <span id="client-snackbar">
+                                <Icon>warning</Icon>
+                                <span id="message-id">{this.props.msg}</span>
+                            </span>}
+                        action={[
+                            <IconButton
+                                key="close"
+                                aria-label="Close"
+                                color="inherit"
+                                onClick={()=>{this.props.dispatch(userActions.clearError())}}
+                            >
+                               <Icon>close</Icon>
+                            </IconButton>,
+                        ]}
+
+                    />
+                </Snackbar>
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    const { loggingIn, loggedIn } = state.authentication;
-    const { type } = state.alert;
+    const { loading, error, user, msg } = state.authentication;
     return {
-        loggingIn,
-        loggedIn,
-        type
+        loading,
+        error,
+        user,
+        msg
     };
 }
 
