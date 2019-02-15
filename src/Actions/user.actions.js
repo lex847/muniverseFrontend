@@ -1,6 +1,5 @@
 import { userConstants } from '../Constants';
 import { userService } from '../Services';
-import { alertActions } from './';
 import { history } from '../Helpers';
 
 export const userActions = {
@@ -55,7 +54,7 @@ function register(user) {
         userService.register(user)
             .then(
                 user => {
-                    dispatch(success(user,"Confirm your email!"));
+                    dispatch(success(JSON.parse(user).data,"Confirm your email!"));
                     history.push('/confirm');
                 },
                 error => {

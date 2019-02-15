@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Post from '../../Components/Post/Post';
-
+import config from '../../Helpers/config';
+import './Home.css'
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,7 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        fetch('http://14.139.56.18:3003/api/v1/user/feed')
+        fetch(config.serverUrl+'/api/v1/user/feed')
             .then((res) => res.json().then((response) => {
                 this.setState({
                     data: response.data,
@@ -21,7 +22,7 @@ class Home extends Component {
     render() {
         if (this.state.fetched) {
             return (
-                <div className="col-md-6 offset-3">
+                <div className="home">
                     <Post
                         nickname={this.state.data[0].nickname}
                         avatar={this.state.data[0].avatar}

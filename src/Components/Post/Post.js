@@ -1,66 +1,43 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-
-import "./Post.css";
-
-class UiCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            buttonLiked: true
-        }
-    }
-    changeColor() {
-        this.setState({
-            buttonLiked: !this.state.buttonLiked
-        })
-    }
-
-    tempFunction(data) {
-        console.log(data);
-        // <Link to="/vishichoudhary/fhefhefefeh" />
-    }
-    render() {
-        const nickname = this.props.nickname;
-        const avatar = this.props.avatar;
-        const image = this.props.image;
-        const caption = this.props.caption;
-        const postTime = this.props.time;
-        let likeBtnCls = this.state.buttonLiked ? "like-button" : "liked-button";
-
-        return (
-            <div className="Post" ref="Post">
-                <header>
-                    <div className="Post-user">
-                        <div className="Post-user-avatar">
-                            <img src={avatar} alt={nickname} />
-                        </div>
-                        <div className="Post-user-nickname">
-                            <span><b>{nickname}</b></span>
-                            <span className="time"> {postTime} ago</span>
-                        </div>
-                    </div>
-                    <div className="Post-caption">
-                        {caption}
-                    </div>
-                </header>
-                <div onClick={this.tempFunction.bind(this)}>
-                    <div className="Post-image">
-                        <div className="Post-image-bg">
-                            <img alt={caption} src={image} />
-                        </div>
-                    </div>
-                </div>
-                <button className={likeBtnCls} onClick={this.changeColor.bind(this)}>
-                    <i className="fa fa-heart" ></i> Like
-                </button>
-                <Link to="vishichoudhary/whocare/comments/fhe">
-                    <button className="comment-button">
-                        <i className="fa fa-comment"></i> Comment
-                </button>
-                </Link>
-            </div>
-        );
-    }
+import React from 'react';
+import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Icon } from '@material-ui/core';
+const Post = (props)=>{
+    return(
+        <Card style={{maxWidth:"600px"}}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="Recipe" >
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton>
+             <Icon>more_vert_icon</Icon>
+            </IconButton>
+          }
+          title="Shrimp and Chorizo Paella"
+          subheader="September 14, 2016"
+        />
+        <CardMedia
+          
+          image="/static/images/cards/paella.jpg"
+          title="Paella dish"
+        />
+        <CardContent>
+          <Typography component="p">
+            This impressive paella is a perfect party dish and a fun meal to cook together with your
+            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          </Typography>
+        </CardContent>
+        <CardActions  disableActionSpacing>
+          <IconButton aria-label="Add to favorites">
+            <Icon>favorite</Icon>
+          </IconButton>
+          <IconButton aria-label="Share">
+            <Icon>share</Icon>
+          </IconButton>
+         
+        </CardActions>
+        </Card>
+    )
 }
-export default UiCard;
+export default Post;

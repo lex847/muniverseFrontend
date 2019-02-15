@@ -5,7 +5,7 @@ import config from '../Helpers/config';
 // import axios from 'axios';
 export const userService = {
     login,
-    // logout,
+    logout,
     register,
     // getAll,
     // getById,
@@ -33,10 +33,9 @@ function login(userName, password) {
         });
 }
 
-// function logout() {
-//     // remove user from local storage to log user out
-//     localStorage.removeItem('user');
-// }
+function logout() {
+    localStorage.removeItem('user');
+}
 
 // function getAll() {
 //     const requestOptions = {

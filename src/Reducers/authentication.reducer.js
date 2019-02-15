@@ -3,7 +3,7 @@ import { userConstants } from '../Constants';
 const user = localStorage.getItem('user');
 // const initialState = user ? { loggedIn: true, user } : {};
 const initialState = {
-  user: user,
+  user: JSON.parse(user),
   loading: false,
   error: false,
   msg: null
