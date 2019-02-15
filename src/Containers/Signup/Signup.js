@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignupComp from '../../Components/Signup/Signup';
 import './Signup.css'
 import { userActions } from '../../Actions';
+import {connect} from 'react-redux'
 class Signup extends Component {
     constructor(props){
         super(props);
@@ -48,10 +49,15 @@ class Signup extends Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { userName, password } = this.state;
+        const user = {
+            userName:this.state.userName,
+            password:this.state.password,
+            email:this.state.email,
+            fullName:this.state.fullName
+        }
         const { dispatch } = this.props;
-        if (userName && password) {
-            dispatch(userActions.login(userName, password));
+        if (user.userName && user.password) {
+            dispatch(userActions.register(user));
         }
     }
     render() {
@@ -69,5 +75,13 @@ class Signup extends Component {
         )
     }
 }
-
-export default Signup;
+function mapStateToProps(state) {
+    const { loggingIn, loggedIn } = state.registeration;
+    const { type } = state.alert;
+    return {
+        loggingIn,
+        loggedIn,
+        type
+    };
+}
+export default connect(mapStateToProps)(Signup);

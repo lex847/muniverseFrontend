@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import LoginComp from '../../Components/Login/Login';
 import { userActions } from '../../Actions';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Redirect } from 'react-router-dom'
 import './Login.css'
+import Loader from '../../Components/Loader/Loader'
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -47,18 +47,15 @@ class Login extends Component {
         }
     }
     render() {
-        if (this.props.loggingIn) {
-            return <CircularProgress disableShrink />;
-        }
-        if (this.props.loggedIn) {
+        if (this.props.user) {
             return <Redirect to='/' />
         }
-        if (this.props.type === 'alert-danger' && !this.state.error) {
-            this.setState({ error: true })
+        if (this.props.error) {
+            this.setState({ error: true,msg:this.props.msg })
         }
         return (
             <div className="loginContainer" >
-
+                {this.props.loading?<Loader>We are signing you in..Ma chudao</Loader>:null}
                 <LoginComp
                     usernameChange={this.usernameChange}
                     passwordChange={this.passwordChange}
@@ -72,12 +69,12 @@ class Login extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { loggingIn, loggedIn } = state.authentication;
-    const { type } = state.alert;
+    const { loading, error,user,msg } = state.authentication;
     return {
-        loggingIn,
-        loggedIn,
-        type
+        loading,
+        error,
+        user,
+        msg
     };
 }
 

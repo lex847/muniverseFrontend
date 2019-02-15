@@ -6,7 +6,7 @@ import config from '../Helpers/config';
 export const userService = {
     login,
     // logout,
-    // register,
+    register,
     // getAll,
     // getById,
     // update,
@@ -63,7 +63,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch('${config.serverUrl}/api/auth/signup', requestOptions).then(handleResponse);
+    return fetch(config.serverUrl+'/api/v1/auth/signup', requestOptions).then(handleResponse);
 }
 
 // function update(user) {
@@ -90,7 +90,7 @@ function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok || data.statusCode === 400) {
-            const error = (data && data.message) || response.statusText;
+            const error = (data && data.msg) || response.statusText;
             return Promise.reject(error);
         }
         return data;
