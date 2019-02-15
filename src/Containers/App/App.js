@@ -7,6 +7,7 @@ import Welcome from '../Welcome/Welcome';
 import Error404 from '../Error/Error404';
 import { Login } from '../Login/Login';
 import Signup from '../Signup/Signup';
+import {connect } from 'react-redux'
 import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
 import "./App.css";
 
@@ -19,7 +20,7 @@ class App extends Component {
             <NavBar></NavBar>
             <Switch>
               <Route exact path="/" render={() => (
-                localStorage.getItem('user') ? <Home /> : <Redirect to="/welcome" />
+                this.props.user? <Home /> : <Redirect to="/welcome" />
               )} />
               <Route exact path="/welcome" component={Welcome} />
               <Route exact path="/login" component={Login} />
@@ -34,5 +35,10 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps=state=>{
+  return{
+    user:state.authentication.user
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
