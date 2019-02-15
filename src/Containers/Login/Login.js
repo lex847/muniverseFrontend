@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import './Login.css'
 import Loader from '../../Components/Loader/Loader'
+import { Snackbar, SnackbarContent, Icon, IconButton } from '@material-ui/core';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +33,7 @@ class Login extends Component {
         this.setState({ password: value })
     }
     handleClickShowPassword = () => {
-        
+
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
@@ -50,12 +51,10 @@ class Login extends Component {
         if (this.props.user) {
             return <Redirect to='/' />
         }
-        if (this.props.error) {
-            this.setState({ error: true,msg:this.props.msg })
-        }
+
         return (
             <div className="loginContainer" >
-                {this.props.loading?<Loader>We are signing you in..Ma chudao</Loader>:null}
+                {this.props.loading ? <Loader>We are signing you in..Ma chudao</Loader> : null}
                 <LoginComp
                     usernameChange={this.usernameChange}
                     passwordChange={this.passwordChange}
@@ -64,12 +63,41 @@ class Login extends Component {
                     handleClickShowPassword={this.handleClickShowPassword}
                     error={this.state.error}
                 />
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    open={this.props.msg}
+                    autoHideDuration={3000}
+                >
+                    <SnackbarContent
+                        id="snackbar-warning"
+                        aria-describedby="client-snackbar"
+                        message={
+                            <span id="client-snackbar">
+                                <Icon>warning</Icon>
+                                <span id="message-id">{this.props.msg}</span>
+                            </span>}
+                        action={[
+                            <IconButton
+                                key="close"
+                                aria-label="Close"
+                                color="inherit"
+                                onClick={()=>{this.props.dispatch(userActions.clearError())}}
+                            >
+                               <Icon>close</Icon>
+                            </IconButton>,
+                        ]}
+
+                    />
+                </Snackbar>
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    const { loading, error,user,msg } = state.authentication;
+    const { loading, error, user, msg } = state.authentication;
     return {
         loading,
         error,

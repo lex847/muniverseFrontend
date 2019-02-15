@@ -3,3 +3,10 @@
     justify-content: center;
     align-items: center;
 }
+#snackbar-warning{
+    background-color: rgb(0, 131, 26);
+}
+#client-snackbar{
+    display: flex;
+    align-items: center;
+}

@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
+    clearError
 };
 
 function login(username, password) {
@@ -22,15 +23,25 @@ function login(username, password) {
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
                 }
             );
     };
 
 }
-function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+function request(user) {
+    return { type: userConstants.LOGIN_REQUEST, user }
+}
+function success(user,msg=false) {
+    return { type: userConstants.LOGIN_SUCCESS, user,msg }
+}
+function failure(msg) {
+    
+    return { type: userConstants.LOGIN_FAILURE, msg }
+}
+function clearError(){
+    return { type: userConstants.AUTH_ERROR_CLEAR}
+}
+
 
 function logout() {
     userService.logout();
@@ -44,18 +55,16 @@ function register(user) {
         userService.register(user)
             .then(
                 user => {
-                    dispatch(success());
+                    dispatch(success(user,"Confirm your email!"));
                     history.push('/confirm');
-                    dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
                 }
             );
     };
 
-   
+
 }
 
 function getAll() {
@@ -69,7 +78,7 @@ function getAll() {
             );
     };
 
-   
+
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
