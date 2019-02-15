@@ -20,7 +20,7 @@ class Login extends Component {
         this.usernameChange = this.usernameChange.bind(this);
         this.passwordChange = this.passwordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSubmit = this.handleClickShowPassword.bind(this);
+        this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
     }
 
     usernameChange(e) {
