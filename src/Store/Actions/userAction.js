@@ -1,11 +1,3 @@
-import { alertConstants } from '../Constants';
-
-export const alertActions = {
-    success,
-    error,
-    clear
-};
-
 function success(message) {
     return { type: alertConstants.SUCCESS, message };
 }
@@ -17,3 +9,9 @@ function error(message) {
 function clear() {
     return { type: alertConstants.CLEAR };
 }
+
+export default alertActions = {
+    success,
+    error,
+    clear
+};

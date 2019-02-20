@@ -1,20 +1,20 @@
-import { userConstants } from '../Constants';
+import Constant from '../../Helpers/constant';
 
-export function users(state = {}, action) {
+export default function users(state = {}, action) {
   switch (action.type) {
-    case userConstants.GETALL_REQUEST:
+    case Constant.GETALL_REQUEST:
       return {
         loading: true
       };
-    case userConstants.GETALL_SUCCESS:
+    case Constant.GETALL_SUCCESS:
       return {
         items: action.users
       };
-    case userConstants.GETALL_FAILURE:
+    case Constant.GETALL_FAILURE:
       return { 
         error: action.error
       };
-    case userConstants.DELETE_REQUEST:
+    case Constant.DELETE_REQUEST:
       // add 'deleting:true' property to user being deleted
       return {
         ...state,
@@ -24,12 +24,12 @@ export function users(state = {}, action) {
             : user
         )
       };
-    case userConstants.DELETE_SUCCESS:
+    case Constant.DELETE_SUCCESS:
       // remove deleted user from state
       return {
         items: state.items.filter(user => user.id !== action.id)
       };
-    case userConstants.DELETE_FAILURE:
+    case Constant.DELETE_FAILURE:
       // remove 'deleting:true' property and add 'deleteError:[error]' property to user 
       return {
         ...state,

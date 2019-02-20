@@ -1,8 +1,11 @@
-import { userConstants } from '../Constants';
-import { userService } from '../Services';
-import { history } from '../Helpers';
+import { createBrowserHistory } from 'history';
 
-export const userActions = {
+import Constant from '../../Helpers/constant';
+import service from '../../Helpers/services';
+
+const history = createBrowserHistory();
+
+export default {
     login,
     logout,
     register,
@@ -15,7 +18,7 @@ function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
-        userService.login(username, password)
+        service.login(username, password)
             .then(
                 user => {
                     dispatch(success(user));
@@ -28,33 +31,33 @@ function login(username, password) {
 
 }
 function request(user) {
-    return { type: userConstants.LOGIN_REQUEST, user }
+    return { type: Constant.LOGIN_REQUEST, user }
 }
-function success(user,msg=false) {
-    return { type: userConstants.LOGIN_SUCCESS, user,msg }
+function success(user, msg = false) {
+    return { type: Constant.LOGIN_SUCCESS, user, msg }
 }
 function failure(msg) {
-    
-    return { type: userConstants.LOGIN_FAILURE, msg }
+
+    return { type: Constant.LOGIN_FAILURE, msg }
 }
-function clearError(){
-    return { type: userConstants.AUTH_ERROR_CLEAR}
+function clearError() {
+    return { type: Constant.AUTH_ERROR_CLEAR }
 }
 
 
 function logout() {
-    userService.logout();
-    return { type: userConstants.LOGOUT };
+    service.logout();
+    return { type: Constant.LOGOUT };
 }
 
 function register(user) {
     return dispatch => {
         dispatch(request(user));
 
-        userService.register(user)
+        service.register(user)
             .then(
                 user => {
-                    dispatch(success(JSON.parse(user).data,"Confirm your email!"));
+                    dispatch(success(JSON.parse(user).data, "Confirm your email!"));
                     history.push('/confirm');
                 },
                 error => {
@@ -70,7 +73,7 @@ function getAll() {
     return dispatch => {
         dispatch(request());
 
-        userService.getAll()
+        service.getAll()
             .then(
                 users => dispatch(success(users)),
                 error => dispatch(failure(error.toString()))
@@ -85,7 +88,7 @@ function _delete(id) {
     return dispatch => {
         dispatch(request(id));
 
-        userService.delete(id)
+        service.delete(id)
             .then(
                 user => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))

@@ -1,9 +1,6 @@
-import config from '../Helpers/config';
-//import { authHeader } from '../Helpers';
-//const config  = "hello";
+import config from './config';
 
-// import axios from 'axios';
-export const userService = {
+export default {
     login,
     logout,
     register,
@@ -23,7 +20,7 @@ function login(userName, password) {
         body: JSON.stringify({ userName, password })
     };
 
-    return fetch(config.serverUrl+'/api/v1/auth/login', requestOptions)
+    return fetch(config.serverUrl + '/api/v1/auth/login', requestOptions)
         .then(handleResponse)
         .then(user => {
             if (user.data.token) {
@@ -62,7 +59,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(config.serverUrl+'/api/v1/auth/signup', requestOptions).then(handleResponse);
+    return fetch(config.serverUrl + '/api/v1/auth/signup', requestOptions).then(handleResponse);
 }
 
 // function update(user) {

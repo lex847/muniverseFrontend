@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import SignupComp from '../../Components/Signup/Signup';
-import './Signup.css'
-import { userActions } from '../../Actions';
 import { connect } from 'react-redux'
-import Loader from '../../Components/Loader/Loader'
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { Icon, IconButton } from '@material-ui/core';
+
+import SignupComp from '../../Components/Signup/Signup';
+import './Signup.css'
+import authAction  from '../../Store/Actions/authAction';
+import Loader from '../../Components/Loader/Loader'
+
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +63,7 @@ class Signup extends Component {
         }
         const { dispatch } = this.props;
         if (user.userName && user.password) {
-            dispatch(userActions.register(user));
+            dispatch(authAction.register(user));
         }
     }
     render() {
@@ -97,7 +99,7 @@ class Signup extends Component {
                                 key="close"
                                 aria-label="Close"
                                 color="inherit"
-                                onClick={() => { this.props.dispatch(userActions.clearError()) }}
+                                onClick={() => { this.props.dispatch(authAction.clearError()) }}
                             >
                                 <Icon>close</Icon>
                             </IconButton>,
@@ -109,7 +111,7 @@ class Signup extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { loading, error, msg } = state.authentication;
+    const { loading, error, msg } = state.authReducer;
     return {
         loading,
         error,
