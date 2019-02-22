@@ -1,12 +1,12 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom'
 import './Signup.css';
-import { InputAdornment, IconButton, Icon } from '@material-ui/core';
+import { InputAdornment, IconButton, Icon, CircularProgress, FormLabel } from '@material-ui/core';
 
 const styles = {
     paper: {
@@ -47,7 +47,11 @@ const styles = {
     button: {
         marginTop: '20px',
         marginLeft: '80px',
-        background: "#0b8221"
+        backgroundColor:"green",
+        color:"white",
+        '&:hover': {
+            backgroundColor: "rgb(0, 186, 0)",
+          },
     },
     footer: {
         height: '70px',
@@ -76,8 +80,25 @@ function Signup(props) {
                     name="userName"
                     margin="normal"
                     variant="outlined"
-                    inputProps={{ color: '#0b8221' }}
+                    
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="Confirm"
+                                    onClick={props.verifyUsername}
+                                >
+
+                                    {props.checkingUsername===true ? <CircularProgress size={21}/>:null}
+                                    {props.checkingUsername===false ? <Icon>autorenew</Icon>:null}
+                                     
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
+                {props.userNameAvailable===false?<FormLabel style={{textAlign:"center",display:"block",color:"red"}} component="error">Username Unavailable</FormLabel>:null}
+                {props.userNameAvailable===true?<FormLabel style={{textAlign:"center",display:"block",color:"green"}} component="error">Username Available</FormLabel>:null}
             </div>
             <div>
                 <TextField
@@ -156,6 +177,8 @@ function Signup(props) {
                 <Button
                     onClick={props.handleSubmit}
                     className={classes.button}
+                    disabled={!(props.userNameAvailable===true)}
+                    variant="contained"
                 >
                    Signup 
                 </Button>

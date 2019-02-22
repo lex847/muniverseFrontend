@@ -57,7 +57,7 @@ function register(user) {
         service.register(user)
             .then(
                 user => {
-                    dispatch(success(JSON.parse(user).data, "Confirm your email!"));
+                    dispatch(success("", "Confirm your email!"));
                     history.push('/confirm');
                 },
                 error => {

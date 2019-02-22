@@ -4,12 +4,25 @@ export default {
     login,
     logout,
     register,
+    checkUsername
     // getAll,
     // getById,
     // update,
     // delete: _delete
 };
-
+function checkUsername(userName){
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userName })
+    };
+    return fetch(config.serverUrl + '/api/v1/auth/checkUserName', requestOptions)
+        .then(handleResponse)
+        
+}
 function login(userName, password) {
     const requestOptions = {
         method: 'POST',
