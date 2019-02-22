@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Icon } from '@material-ui/core';
 const Post = (props)=>{
     return(
-        <Card style={{maxWidth:"600px"}}>
+        <Card style={{margin:"10px"}}>
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" >
