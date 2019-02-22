@@ -8,7 +8,7 @@ import SignupComp from '../../Components/Signup/Signup';
 import './Signup.css'
 import authAction  from '../../Store/Actions/authAction';
 import Loader from '../../Components/Loader/Loader'
-
+import services from '../../Helpers/services'
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -19,12 +19,37 @@ class Signup extends Component {
             password: '',
             confirmPassword: '',
             matched: "false",
-            error: false,
-            showPassword: false
+            error: "null",
+            showPassword: false,
+            userNameAvailable:"false",
+            checkingUsername:false
         };
         this.inputChangeHandler = this.inputChangeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+        this.verifyUsername = this.verifyUsername.bind(this);
+    }
+    async verifyUsername(){
+        this.setState({
+            checkingUsername:true
+        })
+        try{
+            await services.checkUsername(this.state.userName)
+            
+
+        }catch(err){
+            this.setState({
+                userNameAvailable:false,
+                checkingUsername:false
+            })
+            return;
+            
+        }
+        this.setState({
+            checkingUsername:false,
+            userNameAvailable:true
+        })
+       
     }
     inputChangeHandler(e) {
         if (e.target.name === 'confirmPassword') {
@@ -40,6 +65,11 @@ class Signup extends Component {
                 })
             }
         }
+        if (e.target.name === 'userName'){
+            this.setState({
+                userNameAvailable:"false"
+            })
+        }
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -52,7 +82,7 @@ class Signup extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (!this.state.matched) {
+        if (!this.state.matched || !this.state.userNameAvailable) {
             return;
         }
         const user = {
@@ -75,8 +105,10 @@ class Signup extends Component {
                     handleSubmit={this.handleSubmit}
                     showPassword={this.state.showPassword}
                     handleClickShowPassword={this.handleClickShowPassword}
-                    error={this.state.error}
+                    userNameAvailable={this.state.userNameAvailable}
                     matched={this.state.matched}
+                    verifyUsername={this.verifyUsername}
+                    checkingUsername={this.state.checkingUsername}
                 />
                 <Snackbar
                     anchorOrigin={{
