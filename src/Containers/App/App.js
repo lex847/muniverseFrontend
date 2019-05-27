@@ -10,6 +10,7 @@ import Signup from '../Signup/Signup';
 import { connect } from 'react-redux'
 import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-dom'
 import "./App.css";
+import Profile from '../Profile/Profile';
 
 class App extends Component {
   render() {
@@ -22,12 +23,15 @@ class App extends Component {
               <Route exact path="/" render={() => (
                 this.props.user ? <Home /> : <Redirect to="/welcome" />
               )} />
+              {this.props.user?
+                [ <Route exact path="/user/profile" component={Profile} />]
+                :null}
               <Route exact path="/welcome" component={Welcome} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/error" component={Error404} />
-              <Route exact path="/:user" component={User} />
               <Route exact path="/:user/:post" component={Post} />
+              <Route exact path="/:user" component={User} />
             </Switch>
           </div>
         </Router>

@@ -1,0 +1,67 @@
+.profile{
+background-color: #eee;
+}
+.profile .cover-img{
+    background-color: #eee;
+    height: 300px;
+    text-align: center;
+}
+.profile .cover-img img{
+    height: 300px;
+    width: 100vw;
+    overflow: hidden;
+
+}
+.profile .user-nav{
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.303);
+}
+.profile .my-info{
+    background-color: #eee;
+}
+.profile .my-tweets{
+    background-color: #eee;
+}
+.profile .trends{
+    background-color: #eee;
+}
+.profile .user-nav .profile-img-p{
+    padding: 0 10px;
+    width: 200px;
+    margin:0 80px;
+}
+.profile .user-nav .profile-name{
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    font-weight: 600;
+    padding: 0 10px;
+    height: inherit;
+}
+.profile .user-nav .profile-followers{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+   padding: 0 24px;
+}
+.profile .user-nav .profile-followers label:first-of-type{
+    font-weight: 600;
+    padding: 2px;
+    font-size: 10px;
+}
+.profile .user-nav .profile-followers label{
+    font-weight: 700;
+    font-size: 24px;
+}
+.profile .user-nav .profile-img{
+    position: absolute;
+    bottom: -20px;
+    width:200px;
+    height: 200px;
+    box-sizing: border-box;
+    border: 6px solid rgb(55, 55, 55);
+}
